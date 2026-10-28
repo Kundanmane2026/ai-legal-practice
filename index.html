@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A free 28-day course teaching Indian advocates and law students to use AI assistants safely in legal practice.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>AI in Legal Practice</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Literata:ital,opsz,wght@0,7..72,400..600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a ruled brief — red margin rule, numbered paragraphs in the margin, cause-list style headings */
+:root{
+  --paper:#F2F4ED; --card:#FBFCF8; --ink:#1A1F1C; --muted:#57604F; --rule:#CBD2C4;
+  --accent:#2B3D8F; --accent-soft:#E3E7F5; --seal:#A12C24; --seal-soft:#F6E4E1; --ok:#2F6B3A;
+  --display:"Archivo",'Arial Narrow',Arial,sans-serif;
+  --body:"Literata",Georgia,'Times New Roman',serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121513; --card:#1A1E1B; --ink:#E5E9E1; --muted:#9BA494; --rule:#2F3630;
+  --accent:#93A5F2; --accent-soft:#20263D; --seal:#E58075; --seal-soft:#2E1C1A; --ok:#7FC48B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121513; --card:#1A1E1B; --ink:#E5E9E1; --muted:#9BA494; --rule:#2F3630;
+  --accent:#93A5F2; --accent-soft:#20263D; --seal:#E58075; --seal-soft:#2E1C1A; --ok:#7FC48B; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.65 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;padding-block:20px 64px}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-stretch:80%;line-height:1.08;text-wrap:balance;margin:0}
+.eyebrow{font:600 12px/1.2 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono)}
+
+/* top bar */
+.bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.brand{font:700 15px/1.2 var(--display);letter-spacing:.02em;color:var(--ink);text-decoration:none}
+.brand span{color:var(--seal)}
+.bar nav{display:flex;gap:16px;font:500 14px var(--display)}
+.bar nav a{text-decoration:none;color:var(--muted)}
+.bar nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;padding-block:48px 40px;align-items:end}
+.hero h1{font-size:clamp(44px,7.4vw,92px);font-weight:800;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--seal)}
+.hero p.lede{font-size:19px;max-width:34em;margin:20px 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{font:600 15px/1 var(--display);letter-spacing:.02em;padding:14px 20px;border-radius:3px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;text-decoration:none;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{border-color:var(--accent)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent)}
+.stamp{border:2px solid var(--seal);outline:1px solid var(--seal);outline-offset:4px;color:var(--seal);padding:20px 22px;width:100%;max-width:320px;justify-self:end;background:var(--card)}
+.stamp .big{font:800 54px/1 var(--display);font-stretch:75%}
+.stamp dl{display:grid;grid-template-columns:2.2em minmax(0,1fr);align-items:baseline;gap:8px 12px;margin:14px 0 0;font:500 15px/1.35 var(--display);color:var(--ink)}
+.stamp dt{color:var(--seal);font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.stamp dd{margin:0}
+
+/* sections */
+section{padding-block:40px;border-top:1px solid var(--rule)}
+.sec-head{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;margin-bottom:24px}
+.sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:750}
+.diff{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:2px solid var(--ink)}
+.diff div{padding:18px 18px 20px 0;border-bottom:1px solid var(--rule)}
+.diff h3{font-size:20px;font-weight:700;margin-bottom:6px}
+.diff p{margin:0;color:var(--muted);font-size:15.5px}
+
+/* curriculum */
+.weeks{display:grid;gap:28px}
+.week{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px}
+.week h3{font-size:24px;font-weight:750}
+.week .eyebrow{margin-bottom:6px}
+.week p.wdesc{color:var(--muted);font-size:15px;margin:8px 0 0}
+.days{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.days li{border-bottom:1px solid var(--rule)}
+.days a,.days .locked{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:12px 0;text-decoration:none;color:var(--ink)}
+.days a:hover .t{color:var(--accent)}
+.days .n{font:600 13px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.days .t{font-size:16.5px}
+.tag{font:600 11px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;padding:5px 7px;border-radius:2px;white-space:nowrap}
+.tag.open{background:var(--accent-soft);color:var(--accent)}
+.tag.done{background:var(--accent);color:var(--paper)}
+.tag.soon{color:var(--muted);border:1px solid var(--rule)}
+.days .locked .t{color:var(--muted)}
+
+/* instructor */
+.instr{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px}
+.instr p{max-width:40em;margin:0 0 12px}
+.creds{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:8px;font-size:15.5px}
+.creds li{padding-left:18px;position:relative}
+.creds li::before{content:"§";position:absolute;left:0;color:var(--seal);font-family:var(--display);font-weight:700}
+
+.fine{font-size:13.5px;color:var(--muted);max-width:62em}
+.fine p{margin:0 0 8px}
+
+/* lesson view */
+.lesson{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding-top:32px}
+.lesson aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);align-self:start;font:500 14px/1.4 var(--display)}
+.lesson aside ol{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:2px}
+.lesson aside a{display:block;padding:5px 0;text-decoration:none;color:var(--muted)}
+.lesson aside a[aria-current="page"]{color:var(--ink);font-weight:700}
+.lesson aside a .ck{color:var(--ok)}
+.sheet{min-width:0;border-left:2px solid var(--seal);padding-left:28px;max-width:720px}
+.sheet h1{font-size:clamp(34px,5.4vw,56px);font-weight:800;margin:8px 0 6px}
+.sheet .meta{font:500 14px var(--display);color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.para{position:relative;margin:22px 0}
+.para::before{content:attr(data-n);position:absolute;left:-58px;top:2px;width:22px;text-align:right;font:500 12px var(--mono);color:var(--seal);font-variant-numeric:tabular-nums}
+.para h2{font-size:22px;font-weight:700;margin:0 0 8px}
+.para p{margin:0 0 10px}
+.para ul,.para ol{margin:0 0 10px;padding-left:22px}
+.para li{margin-bottom:4px}
+.prompt{background:var(--card);border:1px solid var(--rule);border-radius:3px;margin:8px 0 4px}
+.prompt header{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid var(--rule);font:600 12px var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.prompt pre{margin:0;padding:14px;overflow-x:auto;font:400 13.5px/1.6 var(--mono);white-space:pre-wrap;word-break:break-word}
+.copy{font:600 12px var(--display);letter-spacing:.06em;background:transparent;color:var(--accent);border:1px solid var(--accent);border-radius:2px;padding:5px 9px;cursor:pointer}
+.verify{background:var(--seal-soft);border-left:4px solid var(--seal);padding:14px 16px;margin:8px 0}
+.verify h2{color:var(--seal)}
+.task{background:var(--accent-soft);border-left:4px solid var(--accent);padding:14px 16px;margin:8px 0}
+.tbl{overflow-x:auto;margin:6px 0 10px}
+.tbl table{border-collapse:collapse;font-size:15px;min-width:460px;width:100%}
+.tbl th,.tbl td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl th{font:600 13px var(--display);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--ink)}
+.cite{font-style:italic}
+.lnav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:36px;padding-top:20px;border-top:1px solid var(--rule)}
+.donebtn[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:var(--paper)}
+.soonbox{padding:20px;border:1px dashed var(--rule);margin-top:20px}
+
+footer{border-top:1px solid var(--rule);margin-top:40px;padding-top:20px}
+
+/* daily playbook */
+.entry{margin:28px 0 0;padding:18px;border:1.5px solid var(--ink);background:var(--card)}
+.entry h2{font-size:22px;font-weight:700;margin:0 0 4px}
+.entry p{margin:0 0 10px;color:var(--muted);font-size:15px}
+.entry label{display:block;font:600 13px var(--display);letter-spacing:.06em;text-transform:uppercase;margin:12px 0 6px}
+.entry textarea{width:100%;min-height:110px;font:400 15px/1.5 var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:10px;resize:vertical}
+.entry .saved{font:500 13px var(--display);color:var(--ok);min-height:1.2em;margin-top:6px}
+.pb{padding-top:32px;max-width:760px}
+.pb h1{font-size:clamp(34px,5.4vw,56px);font-weight:800;margin:8px 0 10px}
+.meter{height:8px;background:var(--rule);border-radius:4px;overflow:hidden;margin:14px 0 6px}
+.meter span{display:block;height:100%;background:var(--accent)}
+.pbday{border-top:1px solid var(--rule);padding:16px 0}
+.pbday h2{font-size:20px;font-weight:700;margin:0 0 6px}
+.pbday dl{margin:0;display:grid;gap:6px}
+.pbday dt{font:600 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pbday dd{margin:0 0 6px;white-space:pre-wrap}
+.pbday .empty{color:var(--muted);font-style:italic}
+#pb-text{position:absolute;left:-9999px;width:1px;height:1px}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:minmax(0,1fr);padding-block:32px;gap:28px}
+  .stamp{justify-self:stretch;max-width:none;margin-inline:5px}
+  .sec-head,.week,.instr,.lesson{grid-template-columns:minmax(0,1fr);gap:12px}
+  .lesson aside{position:static}
+  .lesson aside ol{display:flex;flex-wrap:wrap;gap:4px 12px}
+  .sheet{padding-left:18px}
+  .para::before{position:static;display:block;text-align:left;width:auto;margin-bottom:2px}
+  .days a,.days .locked{grid-template-columns:52px minmax(0,1fr);}
+  .days .tag{grid-column:2;justify-self:start}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="bar">
+    <a class="brand" href="#home">AI in Legal Practice <span>/</span> An AI lawyer's insights</a>
+    <nav aria-label="Main">
+      <a href="#curriculum">Curriculum</a>
+      <a href="#day-1">Start Day 1</a>
+      <a href="#playbook">My playbook</a>
+      <a href="#instructor">Instructor</a>
+    </nav>
+  </div>
+  <main id="view"></main>
+  <footer class="fine">
+    <p><strong>Independent and free.</strong> This course is not affiliated with, sponsored by, or endorsed by Anthropic or any AI company. Claude is a trademark of Anthropic, PBC; other product names belong to their owners and are used only to describe what the lessons cover.</p>
+    <p><strong>Educational content, not legal advice.</strong> Nothing here is solicitation or advertisement within Rule 36 of the Bar Council of India Rules. Every AI output discussed in this course must be checked by a qualified advocate before it is relied on.</p>
+    <p>No fees, no subscription, no card details. Your progress is saved only in your own browser.</p>
+  </footer>
+</div>
+
+<script>
+const WEEKS=[
+ {w:1,title:"Foundations and safe prompting",desc:"What AI can and cannot do for a lawyer, how to protect client confidence, and how to write a prompt that produces usable work.",days:[
+  "What an AI assistant is, and is not, for legal work","Client confidentiality comes first","Your first legal prompt: the FIJO method","Giving context: documents, roles and audience","Asking for structure: IRAC, tables and headings","Iterate and stress-test: argue the other side","Verify before you rely (Week 1 project)"]},
+ {w:2,title:"Research and drafting",desc:"Summarise judgments, read statutes across the new criminal codes, and draft notices and client letters.",days:[
+  "Summarising a judgment without losing the ratio","Reading statutes: IPC → BNS, CrPC → BNSS, IEA → BSA","Structuring a research memo","Drafting a legal notice","Drafting a reply to a notice","Client letters in plain English and Marathi","Week 2 project: notice-to-reply file"]},
+ {w:3,title:"Contracts and IP practice",desc:"First reads, clause risk flags, NDAs, trademark clearance memos and copyright notices.",days:[
+  "The first read of a contract","Flagging clause-level risk","Reviewing an NDA","Structuring a trademark clearance memo","Copyright notices and takedown requests","Comparing two versions of a draft","Week 3 project: contract review note"]},
+ {w:4,title:"Compliance and workflows",desc:"DPDP checks, privacy notices, a firm AI-use policy, and a repeatable personal workflow.",days:[
+  "A first-pass DPDP Act gap check","Drafting a privacy notice","Writing an AI-use policy for a small firm","Projects and standing instructions","Building your legal prompt library","Matter workflows from intake to closing note","Capstone: your own AI-assisted practice playbook"]}
+];
+
+/* Week 1 full lessons. Each: [type, heading, html] */
+const L={
+1:{min:15,sections:[
+ ["p","The short version",`<p>An AI assistant predicts useful text from patterns. It drafts, summarises, restructures and explains very well. It is not a law database, it does not know which judgments exist, and it can state a wrong citation with full confidence.</p>`],
+ ["p","Where it helps a lawyer",`<ul><li>First drafts: notices, replies, clauses, client emails.</li><li>Summaries of documents you supply.</li><li>Turning your rough notes into a structured memo.</li><li>Spotting issues and counter-arguments you may have missed.</li><li>Plain-language and translated explanations for clients.</li></ul>`],
+ ["p","Where it fails",`<ul><li>Case names, citations and paragraph numbers it was not given.</li><li>Recent amendments, notifications and judgments.</li><li>Local practice: registry habits, a particular bench's preferences.</li><li>Facts it was not told. It fills gaps with plausible guesses.</li></ul>`],
+ ["p","Two cases every lawyer should know",`<p><span class="cite">Mata v. Avianca, Inc.</span> (S.D.N.Y., 2023): counsel filed a brief citing judgments an AI tool had invented and were sanctioned by the court.</p><p><span class="cite">Christian Louboutin SAS v. M/s The Shoe Boutique – Shutiq</span> (Delhi High Court, 2023): the court held that a chatbot's response cannot be the basis for adjudicating legal or factual issues.</p>`],
+ ["prompt","Try it",`I am an advocate practising in India. Explain in 5 bullet points what you can reliably help me with in day-to-day legal practice, and in 5 bullet points what I must never rely on you for without independent verification. Be specific to Indian practice.`],
+ ["task","Practice task",`<p>Run the prompt. Then ask the assistant for "three Supreme Court judgments on anticipatory bail with citations". Check each citation on SCC Online, Indian Kanoon or the Supreme Court website. Note how many were accurate.</p>`],
+ ["verify","Verify before you rely",`<p>Treat every case name, citation, section number and date in an AI answer as unverified until you have read the primary source yourself.</p>`]
+]},
+2:{min:15,sections:[
+ ["p","Why this comes before any prompting",`<p>Your duty of confidence to the client does not change because the tool is new. Under Section 132 of the Bharatiya Sakshya Adhiniyam, 2023 (formerly Section 126 of the Indian Evidence Act) professional communications are protected, and the Bar Council of India Rules require you to keep your client's confidence. If client data identifies a person, the Digital Personal Data Protection Act, 2023 may also apply.</p>`],
+ ["p","Three rules for every matter",`<ol><li><strong>Anonymise.</strong> Replace names, addresses, phone numbers, PAN, Aadhaar, account and case numbers with placeholders such as [CLIENT], [OPPONENT], [PROPERTY].</li><li><strong>Check the settings.</strong> Read your plan's data and privacy settings, including whether your conversations may be used to improve models, and choose the strictest option available.</li><li><strong>Ask first when in doubt.</strong> If the client or a court order restricts disclosure, do not paste the material at all.</li></ol>`],
+ ["table","What to replace",`<div class="tbl"><table><thead><tr><th>In the document</th><th>Replace with</th></tr></thead><tbody>
+<tr><td>Ramesh Patil, Flat 4, Kothrud, Pune</td><td>[CLIENT], [CLIENT ADDRESS]</td></tr>
+<tr><td>Aadhaar / PAN / bank account no.</td><td>Delete entirely</td></tr>
+<tr><td>Civil Suit No. 1234 of 2025, Pune</td><td>[SUIT NO.], [COURT]</td></tr>
+<tr><td>₹ 18,40,000 due on 12.03.2026</td><td>Keep if needed for the analysis</td></tr>
+</tbody></table></div>`],
+ ["prompt","Try it",`Here is a paragraph from a legal notice. Replace every name, address, identity number and case number with a labelled placeholder in square brackets, and list the placeholders you used at the end. Do not change anything else.
+
+[paste a paragraph you have already anonymised by hand, or a made-up one]`],
+ ["task","Practice task",`<p>Write a one-page "AI confidentiality note" for your own practice: what you will never paste, what you anonymise, and which settings you use. You will reuse it in Week 4.</p>`],
+ ["verify","Verify before you rely",`<p>Never send real client data to a tool to test whether it anonymises well. Test with invented facts first.</p>`]
+]},
+3:{min:15,sections:[
+ ["p","The FIJO method",`<p>Most weak legal prompts are missing one of four things. Before you send a prompt, check that it has all four:</p>
+<div class="tbl"><table><thead><tr><th>Letter</th><th>Means</th><th>Example</th></tr></thead><tbody>
+<tr><td><strong>F</strong></td><td>Facts</td><td>Tenant has not paid rent for 7 months; lease expired in March 2026.</td></tr>
+<tr><td><strong>I</strong></td><td>Issue</td><td>Can the landlord seek eviction and arrears together?</td></tr>
+<tr><td><strong>J</strong></td><td>Jurisdiction</td><td>Maharashtra; Maharashtra Rent Control Act, 1999.</td></tr>
+<tr><td><strong>O</strong></td><td>Output</td><td>One-page note to a senior, with headings and open questions.</td></tr>
+</tbody></table></div>`],
+ ["p","Before and after",`<p><strong>Weak:</strong> "Tell me about eviction law."</p><p><strong>Strong:</strong> the FIJO prompt below. It tells the assistant who is asking, what happened, where, and what the finished work should look like.</p>`],
+ ["prompt","Try it",`Act as a research assistant to an advocate in Pune.
+FACTS: [CLIENT] is a landlord. The tenant has not paid rent for 7 months. The written lease expired in March 2026 and was not renewed.
+ISSUE: Can [CLIENT] seek eviction and recovery of arrears, and what notice should be served first?
+JURISDICTION: Maharashtra. Consider the Maharashtra Rent Control Act, 1999 and the Transfer of Property Act, 1882.
+OUTPUT: A one-page note with headings: Applicable law, Steps in order, Documents needed, Open questions for the client. Mark any statement you are unsure of with [CHECK]. Do not cite case law.`],
+ ["task","Practice task",`<p>Take a real (anonymised) query from your week. Write it once as a one-line prompt and once in FIJO form. Compare the two answers side by side.</p>`],
+ ["verify","Verify before you rely",`<p>The [CHECK] markers are a starting point, not a guarantee. Unmarked statements can still be wrong; check the sections against the bare Act.</p>`]
+]},
+4:{min:15,sections:[
+ ["p","Context changes the answer",`<p>The assistant knows only what is in the conversation. Three kinds of context make the biggest difference:</p><ul><li><strong>Documents:</strong> paste or attach the agreement, notice or order you want it to work from, anonymised.</li><li><strong>Role:</strong> who you are and who the output is for (a senior advocate, a client, a court).</li><li><strong>Audience:</strong> a first-generation business owner needs different words from an in-house counsel.</li></ul>`],
+ ["p","Tell it what to work from",`<p>When you supply a document, instruct the assistant to rely only on it. Ask it to quote the clause number for every point it makes, so you can check each one quickly.</p>`],
+ ["prompt","Try it",`I am attaching an anonymised commercial lease. Work only from this document. Do not add terms that are not in it.
+1. List the tenant's payment obligations, with the clause number for each.
+2. List every clause that allows either party to terminate, with the notice period.
+3. Note anything that is unclear or contradictory.
+Audience: my client, a small-business owner with no legal training. Use plain English.`],
+ ["task","Practice task",`<p>Run the same request twice: once for "a senior advocate" and once for "a client with no legal training". Note what changed in vocabulary, length and structure.</p>`],
+ ["verify","Verify before you rely",`<p>Open the document and check every clause number it gave you. A wrong clause number is the most common error at this stage.</p>`]
+]},
+5:{min:15,sections:[
+ ["p","Ask for the shape you need",`<p>If you do not ask for a structure, you get an essay. Lawyers work in fixed structures already, so name them:</p><ul><li><strong>IRAC</strong> (Issue, Rule, Application, Conclusion) for analysis.</li><li><strong>Tables</strong> for comparisons, chronologies and clause lists.</li><li><strong>Numbered paragraphs</strong> for pleadings and notices.</li><li><strong>Headings you choose</strong> for memos.</li></ul>`],
+ ["p","Constraints that save editing time",`<p>Set the length ("under 300 words"), the register ("formal, for filing"), the language ("Indian English spelling"), and what to leave out ("no case law", "no recommendations").</p>`],
+ ["prompt","Try it",`Using the facts below, prepare a chronology as a table with columns: Date | Event | Document | Relevance to limitation.
+Sort by date. Use DD.MM.YYYY. If a date is uncertain, write "approx." and explain in a note under the table.
+Then, in one IRAC block, analyse whether the claim is within limitation under the Limitation Act, 1963. Mark any article number with [CHECK].
+
+FACTS: [paste anonymised facts with dates]`],
+ ["task","Practice task",`<p>Build a chronology for one of your files. Compare the time it took against doing it by hand, and count how many dates you had to correct.</p>`],
+ ["verify","Verify before you rely",`<p>Recalculate every limitation date yourself. Never file on an AI-computed limitation period without checking the article and the dates.</p>`]
+]},
+6:{min:15,sections:[
+ ["p","The first answer is a draft",`<p>Good results come from a short back-and-forth. Point to exactly what is wrong instead of starting again: "Paragraph 3 is too long; split it", "Remove the recommendation", "Use the defined term [LESSOR] throughout".</p>`],
+ ["p","Use it as your opponent",`<p>One of the most valuable uses is asking the assistant to attack your own position. It will find gaps in reasoning, missing evidence and weak points in drafting before the other side does.</p>`],
+ ["prompt","Try it",`Below is my draft argument. Act as opposing counsel.
+1. List the three strongest objections you would raise, strongest first.
+2. For each, say what evidence or authority I would need to answer it.
+3. Point out any sentence in my draft that overstates the position.
+Do not rewrite my draft.
+
+DRAFT: [paste anonymised draft]`],
+ ["task","Practice task",`<p>Run the "opposing counsel" prompt on a draft you wrote this month. Note one objection you had not thought of, and revise your draft yourself.</p>`],
+ ["verify","Verify before you rely",`<p>Counter-arguments may cite law that does not exist. Use them as questions to research, not as authority.</p>`]
+]},
+7:{min:20,sections:[
+ ["p","The verification checklist",`<div class="tbl"><table><thead><tr><th>Check</th><th>Where</th></tr></thead><tbody>
+<tr><td>Every judgment exists and says what is claimed</td><td>SCC Online, Manupatra, Indian Kanoon, court websites</td></tr>
+<tr><td>Citation, bench and paragraph numbers</td><td>The reported judgment itself</td></tr>
+<tr><td>Section numbers under the current law (BNS, BNSS, BSA since 1 July 2024)</td><td>India Code; official comparison tables</td></tr>
+<tr><td>Amendments and notifications</td><td>Gazette of India; India Code</td></tr>
+<tr><td>Dates, amounts and limitation</td><td>Your file; your own calculation</td></tr>
+<tr><td>Facts match the client's instructions</td><td>Client documents</td></tr>
+</tbody></table></div>`],
+ ["p","Ask it to show its uncertainty",`<p>You cannot make an assistant accurate by asking, but you can make its weak points easier to find. Ask it to mark uncertain statements, separate what came from your documents from what came from general knowledge, and list what you should verify.</p>`],
+ ["prompt","Try it",`Review the answer you just gave me. Produce a table with columns: Statement | Source (my document / general knowledge) | Confidence (high, medium, low) | How I should verify it.
+Include every case name, section number, date and amount you mentioned.`],
+ ["task","Week 1 project",`<p>Take one small, real (anonymised) task from your practice. Use FIJO, give context, ask for a structure, run the opposing-counsel check, then run the verification table. Keep a one-page record of what the AI got right, what you corrected, and how long it took. This is the first entry in the playbook you will finish on Day 28.</p>`],
+ ["verify","Verify before you rely",`<p>The final work product is yours. Sign, file or send nothing you have not checked against primary sources.</p>`]
+]}
+};
+
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+let done={};
+try{done=JSON.parse(localStorage.getItem("ailp-done")||"{}")}catch(e){done={}}
+const save=()=>{try{localStorage.setItem("ailp-done",JSON.stringify(done))}catch(e){}};
+let framed=true;try{framed=window.self!==window.top}catch(e){framed=true}
+let notes={};
+try{notes=JSON.parse(localStorage.getItem("ailp-notes")||"{}")}catch(e){notes={}}
+const saveNotes=()=>{try{localStorage.setItem("ailp-notes",JSON.stringify(notes));return true}catch(e){return false}};
+const FIELDS=[["task","What I did today"],["ai","What the AI got right and wrong"],["prompt","My best prompt (to reuse)"]];
+
+function entryBlock(n){
+  const v=notes[n]||{};
+  return `<div class="entry" aria-labelledby="eh-${n}">
+    <h2 id="eh-${n}">Your playbook · Day ${n}</h2>
+    <p>Record today's task as you do it. Each day's entry builds your personal AI practice playbook, which you can review and copy on the My playbook page. Do not type real client names here.</p>
+    ${FIELDS.map(([k,l])=>`<label for="nt-${n}-${k}">${l}</label><textarea id="nt-${n}-${k}" data-k="${k}">${esc(v[k]||"")}</textarea>`).join("")}
+    <div class="saved" id="saved-${n}" aria-live="polite"></div>
+  </div>`;
+}
+
+function playbookText(){
+  let out="MY AI PRACTICE PLAYBOOK\nAI in Legal Practice · An AI lawyer's insights\n\n";
+  allDays.filter(d=>L[d.n]).forEach(d=>{const v=notes[d.n]||{};
+    out+=`DAY ${d.n}: ${d.t}${done[d.n]?"  [completed]":""}\n`;
+    FIELDS.forEach(([k,l])=>{out+=`  ${l}: ${(v[k]||"—").trim()}\n`});out+="\n";});
+  return out;
+}
+
+function playbook(){
+  const open=allDays.filter(d=>L[d.n]);
+  const filled=open.filter(d=>notes[d.n]&&FIELDS.some(([k])=>(notes[d.n][k]||"").trim())).length;
+  const pct=Math.round(filled/28*100);
+  return `<div class="pb">
+    <div class="eyebrow">Your project, built day by day</div>
+    <h1>My AI practice playbook</h1>
+    <p>Every lesson adds one entry. By Day 28 this page is your own written method for using AI in practice: what works, what fails, and the prompts you trust.</p>
+    <div class="meter" role="progressbar" aria-valuenow="${filled}" aria-valuemin="0" aria-valuemax="28" aria-label="Playbook entries"><span style="width:${pct}%"></span></div>
+    <div class="eyebrow">${filled} of 28 entries written</div>
+    <div class="cta"><button class="btn primary" type="button" id="pb-copy">Copy whole playbook</button>${framed?"":'<button class="btn" type="button" id="pb-dl">Download as text file</button>'}</div>
+    <p class="fine" style="margin-top:10px">Saved only in this browser on this device. Copy or download it regularly to keep a backup.</p>
+    <textarea id="pb-text" aria-hidden="true" tabindex="-1" readonly></textarea>
+    <div style="margin-top:24px">${open.map(d=>{const v=notes[d.n]||{};
+      return `<div class="pbday"><h2><a href="#day-${d.n}">Day ${d.n}</a> · ${esc(d.t)}</h2><dl>${FIELDS.map(([k,l])=>`<dt>${l}</dt><dd>${(v[k]||"").trim()?esc(v[k]):'<span class="empty">Not written yet</span>'}</dd>`).join("")}</dl></div>`}).join("")}</div>
+  </div>`;
+}
+const allDays=[];WEEKS.forEach(w=>w.days.forEach((t,i)=>allDays.push({n:(w.w-1)*7+i+1,t,w:w.w})));
+
+function home(){
+  const count=Object.keys(done).length;
+  return `
+<div class="hero">
+  <div>
+    <div class="eyebrow">A free 28-day course for advocates and law students in India</div>
+    <h1 style="margin-top:14px">Use AI in practice. <em>Verify</em> everything.</h1>
+    <p class="lede">Fifteen minutes a day of legal work done with an AI assistant: drafting notices, reading contracts, summarising judgments, and checking every line before it leaves your desk. Taught by a practising IP lawyer.</p>
+    <div class="cta"><a class="btn primary" href="#day-1">${count?"Continue the course":"Start Day 1"}</a><a class="btn" href="#curriculum">See the curriculum</a></div>
+  </div>
+  <div class="stamp" aria-label="Course at a glance">
+    <div class="eyebrow" style="color:var(--seal)">Course fee</div>
+    <div class="big">₹ 0</div>
+    <dl>
+      <dt>28</dt><dd>daily lessons over 4 weeks</dd>
+      <dt>15</dt><dd>minutes a day</dd>
+      <dt>4</dt><dd>weekly projects on real (anonymised) work</dd>
+      <dt>0</dt><dd>sign-ups, cards or subscriptions</dd>
+    </dl>
+  </div>
+</div>
+
+<section aria-labelledby="h-diff">
+  <div class="sec-head"><div class="eyebrow">What makes it different</div><h2 id="h-diff">Built for Indian legal work, not general productivity</h2></div>
+  <div class="diff">
+    <div><h3>Indian law in every lesson</h3><p>BNS, BNSS and BSA sections, the DPDP Act, the Limitation Act, notices, replies and trademark memos.</p></div>
+    <div><h3>Verification is a habit</h3><p>Every lesson ends with a check, because AI tools invent citations and courts have noticed.</p></div>
+    <div><h3>Confidentiality first</h3><p>Anonymising client data comes on Day 2, before any real drafting.</p></div>
+    <div><h3>Work you can reuse</h3><p>Every prompt is ready to copy. By Day 28 you have your own practice playbook.</p></div>
+  </div>
+</section>
+
+<section id="curriculum" aria-labelledby="h-cur">
+  <div class="sec-head"><div class="eyebrow">Curriculum · ${count}/28 done</div><h2 id="h-cur">Four weeks, one skill a day</h2></div>
+  <div class="weeks">${WEEKS.map(w=>`
+    <div class="week">
+      <div><div class="eyebrow">Week ${w.w}</div><h3>${w.title}</h3><p class="wdesc">${w.desc}</p></div>
+      <ol class="days">${w.days.map((t,i)=>{const n=(w.w-1)*7+i+1;const open=!!L[n];
+        const tag=done[n]?'<span class="tag done">Done</span>':open?'<span class="tag open">Open</span>':'<span class="tag soon">Coming soon</span>';
+        return `<li><a href="#day-${n}"><span class="n">Day ${String(n).padStart(2,"0")}</span><span class="t">${esc(t)}</span>${tag}</a></li>`}).join("")}</ol>
+    </div>`).join("")}
+  </div>
+</section>
+
+<section id="instructor" aria-labelledby="h-ins">
+  <div class="instr">
+    <div class="eyebrow">Instructor</div>
+    <div>
+      <h2 id="h-ins" style="font-size:clamp(28px,4vw,40px);font-weight:750;margin-bottom:14px">Kundan Mane</h2>
+      <p>Advocate working across trademark, copyright, patent and design matters, with a focus on AI governance and data privacy. Before law, he spent two decades in police service, including cyber forensics and digital evidence work.</p>
+      <ul class="creds">
+        <li>LLB with specialisation in Intellectual Property Rights</li>
+        <li>LLM in AI and Emerging Technology Law, O.P. Jindal Global University</li>
+        <li>Executive course in AI Cybersecurity and Governance, Columbia Engineering</li>
+        <li>Writes on AI and law as “An AI lawyer's insights”</li>
+      </ul>
+      <p style="margin-top:16px"><a href="https://www.linkedin.com/in/kundan-k-m-221178256" target="_blank" rel="noopener">Follow on LinkedIn for new lessons</a></p>
+    </div>
+  </div>
+</section>`;
+}
+
+function lessonNav(cur){
+  return `<aside aria-label="Week 1 lessons"><div class="eyebrow">Week 1</div><ol>${WEEKS[0].days.map((t,i)=>{const n=i+1;
+    return `<li><a href="#day-${n}"${n===cur?' aria-current="page"':''}>${done[n]?'<span class="ck">✓</span> ':''}Day ${n}</a></li>`}).join("")}</ol>
+    <p style="margin-top:16px"><a href="#curriculum" style="color:var(--muted)">All 28 days</a></p></aside>`;
+}
+
+function lesson(n){
+  const d=allDays[n-1]; const data=L[n];
+  const prev=n>1?`<a class="btn" href="#day-${n-1}">← Day ${n-1}</a>`:`<a class="btn" href="#home">← Course home</a>`;
+  const next=n<28?`<a class="btn primary" href="#day-${n+1}">Day ${n+1} →</a>`:"";
+  if(!data){
+    return `<div class="lesson">${lessonNav(n)}<article class="sheet">
+      <div class="eyebrow">Week ${d.w} · Day ${n}</div><h1>${esc(d.t)}</h1>
+      <div class="soonbox"><p style="margin:0 0 8px"><strong>This lesson is being written.</strong> New lessons are released week by week.</p><p style="margin:0;color:var(--muted)">Week 1 is complete and open now. Finish it first; each later week builds on the FIJO method and the verification checklist.</p></div>
+      <div class="lnav">${prev}<a class="btn primary" href="#day-1">Go to Day 1</a></div></article></div>`;
+  }
+  let k=0;
+  const body=data.sections.map(([type,h,c])=>{k++;
+    if(type==="prompt") return `<div class="para" data-n="¶${k}"><h2>${h}</h2><div class="prompt"><header><span>Prompt · copy and adapt</span><button class="copy" type="button" data-k="${k}">Copy</button></header><pre id="pr-${n}-${k}">${esc(c)}</pre></div></div>`;
+    const cls=type==="verify"?"verify":type==="task"?"task":"";
+    return `<div class="para ${cls}" data-n="¶${k}"><h2>${h}</h2>${c}</div>`;
+  }).join("");
+  return `<div class="lesson">${lessonNav(n)}<article class="sheet">
+    <div class="eyebrow">Week 1 · Day ${n} of 28</div>
+    <h1>${esc(d.t)}</h1>
+    <div class="meta"><span>${data.min} minutes</span><span>Free</span><span>Works with Claude and other AI assistants</span></div>
+    ${body}
+    ${entryBlock(n)}
+    <div class="lnav">${prev}<button class="btn donebtn" type="button" id="done-btn" aria-pressed="${!!done[n]}">${done[n]?"Completed ✓":"Mark as complete"}</button>${next}</div>
+  </article></div>`;
+}
+
+function route(){
+  const h=location.hash.slice(1);
+  const m=/^day-(\d{1,2})$/.exec(h);
+  const v=$("#view");
+  if(m&&+m[1]>=1&&+m[1]<=28){
+    const n=+m[1]; v.innerHTML=lesson(n); window.scrollTo(0,0);
+    v.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{
+      const pre=document.getElementById(`pr-${n}-${b.dataset.k}`); const txt=pre.textContent;
+      const ok=()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1600)};
+      const fallback=()=>{const r=document.createRange();r.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Selected, press copy"};
+      try{navigator.clipboard.writeText(txt).then(ok,fallback)}catch(e){fallback()}
+    }));
+    const db=$("#done-btn");
+    if(db) db.addEventListener("click",()=>{if(done[n])delete done[n];else done[n]=1;save();
+      db.setAttribute("aria-pressed",!!done[n]);db.textContent=done[n]?"Completed ✓":"Mark as complete";
+      const a=v.querySelector(`aside a[href="#day-${n}"]`);if(a)a.innerHTML=(done[n]?'<span class="ck">✓</span> ':'')+"Day "+n;});
+    let tmr;
+    v.querySelectorAll(".entry textarea").forEach(t=>t.addEventListener("input",()=>{
+      notes[n]=notes[n]||{};notes[n][t.dataset.k]=t.value;
+      clearTimeout(tmr);tmr=setTimeout(()=>{const ok=saveNotes();const s=$("#saved-"+n);
+        if(s)s.textContent=ok?"Saved in this browser":"Could not save in this browser. Copy your text somewhere safe.";},400);
+    }));
+  }else if(h==="playbook"){
+    v.innerHTML=playbook();window.scrollTo(0,0);
+    const cb=$("#pb-copy"),ta=$("#pb-text");
+    cb.addEventListener("click",()=>{const txt=playbookText();
+      const ok=()=>{cb.textContent="Copied";setTimeout(()=>cb.textContent="Copy whole playbook",1600)};
+      const fb=()=>{ta.value=txt;ta.style.cssText="position:static;width:100%;height:220px;margin-top:12px";ta.removeAttribute("aria-hidden");ta.focus();ta.select();cb.textContent="Selected, press copy"};
+      try{navigator.clipboard.writeText(txt).then(ok,fb)}catch(e){fb()}});
+    const dl=$("#pb-dl"); if(dl) dl.addEventListener("click",()=>{
+      try{const blob=new Blob([playbookText()],{type:"text/plain"});const a=document.createElement("a");
+        a.href=URL.createObjectURL(blob);a.download="my-ai-practice-playbook.txt";document.body.appendChild(a);a.click();a.remove();
+        setTimeout(()=>URL.revokeObjectURL(a.href),2000);}catch(e){}});
+  }else{
+    v.innerHTML=home();
+    if(h==="curriculum"||h==="instructor"){const t=document.getElementById(h);if(t)t.scrollIntoView();}else window.scrollTo(0,0);
+  }
+}
+addEventListener("hashchange",route);
+route();
+</script>
+
+</body>
+</html>
