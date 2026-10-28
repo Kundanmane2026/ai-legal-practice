@@ -1,6 +1,6 @@
 # AI in Legal Practice
 
-**A free 28-day course for advocates and law students in India on using AI assistants safely in legal work.**
+**A free 28-day course for advocates and law students in India on using AI assistants safely in legal work. Available in English, Hindi and Marathi.**
 
 🔗 **Start the course:** https://kundanmane2026.github.io/ai-legal-practice/
 
@@ -31,6 +31,17 @@ All 28 lessons are live. Each week ends with a project (Days 7, 14, 21 and 28).
 | 2 | Research and drafting: judgment summaries, BNS / BNSS / BSA conversions, research memos, Section 138 notices, replies, English and Marathi client letters | ✅ Live |
 | 3 | Contracts and IP practice: deal maps, clause risk under Indian law, NDAs, trademark clearance memos, copyright takedowns, version comparison | ✅ Live |
 | 4 | Compliance and workflows: DPDP Act gap checks, privacy notices, firm AI-use policy, standing instructions, prompt library, matter workflow, capstone playbook | ✅ Live |
+
+## Languages
+
+Use the **अ/A** language menu at the top of any page.
+
+| Option | Languages | Notes |
+|---|---|---|
+| Full translation | English, हिन्दी (Hindi), मराठी (Marathi) | All 28 lessons, curriculum and interface. Legal terms, Act names and case names are kept in English. Prompts stay in English, because AI assistants handle Indian legal prompts most reliably in English. |
+| Machine translation (Google) | Assamese, Bengali, Dogri, Gujarati, Kannada, Konkani, Maithili, Malayalam, Manipuri, Nepali, Odia, Punjabi, Sanskrit, Sindhi, Tamil, Telugu, Urdu | Opens the course through Google Translate in a new tab. Legal terms may be mistranslated. |
+
+The Hindi and Marathi translations are under review. If any translation differs from the English text, **the English version prevails**.
 
 ## The FIJO method
 
