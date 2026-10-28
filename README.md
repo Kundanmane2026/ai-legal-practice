@@ -2,7 +2,7 @@
 
 **A free 28-day course for advocates and law students in India on using AI assistants safely in legal work.**
 
-🔗 **Start the course:** https://kundanmane2026.github.io/ai-legal-practice/
+🔗 **Start the course:** https://kundanmane2026.github.io/Ai-Legal-practice-/
 
 ---
 
@@ -12,7 +12,7 @@ Fifteen minutes a day of real legal work done with an AI assistant: drafting not
 
 Every lesson includes:
 
-- a short explanation grounded in Indian law and practice
+- a short explanation grounded in Indian law and practice, with statutes and leading cases
 - a ready-to-copy prompt you can adapt
 - a practice task on anonymised work
 - a **"Verify before you rely"** check
@@ -22,12 +22,15 @@ No sign-up, no fees, no subscription. Learners' notes are saved only in their ow
 
 ## Curriculum
 
+All 28 lessons are live. Each week ends with a project (Days 7, 14, 21 and 28).
+
+
 | Week | Theme | Status |
 |---|---|---|
-| 1 | Foundations and safe prompting: confidentiality, the FIJO method, structure, stress-testing, verification | ✅ Live |
-| 2 | Research and drafting: judgment summaries, BNS / BNSS / BSA, research memos, legal notices and replies | 🕒 Coming soon |
-| 3 | Contracts and IP practice: contract review, NDAs, trademark clearance memos, copyright notices | 🕒 Coming soon |
-| 4 | Compliance and workflows: DPDP Act gap checks, privacy notices, firm AI-use policy, capstone playbook | 🕒 Coming soon |
+| 1 | Foundations and safe prompting: confidentiality, the FIJO method, context, structure, stress-testing, verification | ✅ Live |
+| 2 | Research and drafting: judgment summaries, BNS / BNSS / BSA conversions, research memos, Section 138 notices, replies, English and Marathi client letters | ✅ Live |
+| 3 | Contracts and IP practice: deal maps, clause risk under Indian law, NDAs, trademark clearance memos, copyright takedowns, version comparison | ✅ Live |
+| 4 | Compliance and workflows: DPDP Act gap checks, privacy notices, firm AI-use policy, standing instructions, prompt library, matter workflow, capstone playbook | ✅ Live |
 
 ## The FIJO method
 
