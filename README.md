@@ -64,7 +64,7 @@ The lessons work with Claude and other AI assistants, including their free tiers
 
 ## Instructor
 
-**Kundan Mane**: AI, privacy and technology lawyer working across trademark, copyright, patent and design matters, focusing on AI governance and data protection. LLB (IPR), LLM in AI and Emerging Technology Law (O.P. Jindal Global University). Writes on AI and law as *An AI lawyer's insights*.
+**Kundan Mane**: AI, privacy and technology lawyer specialising in AI law, AI governance and data protection, with experience across trademark, copyright, patent and design matters. Master of Laws (LLM) in AI and Emerging Technology Law (O.P. Jindal Global University); LLB (IPR). Writes on AI and law as *An AI lawyer's insights*.
 
 [LinkedIn](https://www.linkedin.com/in/kundan-k-m-221178256)
 
