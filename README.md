@@ -64,7 +64,7 @@ The lessons work with Claude and other AI assistants, including their free tiers
 
 ## Instructor
 
-**Kundan Mane**: advocate working across trademark, copyright, patent and design matters, focusing on AI governance and data privacy. LLB (IPR), LLM in AI and Emerging Technology Law (O.P. Jindal Global University). Writes on AI and law as *An AI lawyer's insights*.
+**Kundan Mane**: AI, privacy and technology lawyer working across trademark, copyright, patent and design matters, focusing on AI governance and data protection. LLB (IPR), LLM in AI and Emerging Technology Law (O.P. Jindal Global University). Writes on AI and law as *An AI lawyer's insights*.
 
 [LinkedIn](https://www.linkedin.com/in/kundan-k-m-221178256)
 
@@ -73,6 +73,7 @@ The lessons work with Claude and other AI assistants, including their free tiers
 - One self-contained `index.html` with no build step, framework or tracking
 - Hosted free on GitHub Pages
 - Progress and playbook notes use the browser's `localStorage` only
+- No personal data is collected. The site is hosted on GitHub Pages and loads Google Fonts, which may log visitors' IP addresses; the machine-translation menu uses Google Translate
 - Works on phones, tablets and desktops, in light and dark mode
 
 ## Disclaimer
