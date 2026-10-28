@@ -2,7 +2,7 @@
 
 **A free 28-day course for advocates and law students in India on using AI assistants safely in legal work.**
 
-🔗 **Start the course:** https://kundanmane2026.github.io/Ai-Legal-practice-/
+🔗 **Start the course:** https://kundanmane2026.github.io/ai-legal-practice/
 
 ---
 
